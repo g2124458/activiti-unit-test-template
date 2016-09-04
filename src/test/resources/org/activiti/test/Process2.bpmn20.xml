@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema"
+             expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+
+  <process id="Process2" name="Process2" isExecutable="true">
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="parallelgateway1"></sequenceFlow>
+    <serviceTask id="Task2" name="Task 2" activiti:async="true" activiti:exclusive="false" activiti:class="org.activiti.DummyActivity"></serviceTask>
+    <sequenceFlow id="flow2" sourceRef="parallelgateway1" targetRef="Task2"></sequenceFlow>
+    <serviceTask id="Task1" name="Task 1" activiti:async="true" activiti:exclusive="false" activiti:class="org.activiti.DummyActivity"></serviceTask>
+    <sequenceFlow id="flow3" sourceRef="parallelgateway1" targetRef="Task1"></sequenceFlow>
+    <sequenceFlow id="flow4" sourceRef="Task1" targetRef="parallelgateway2"></sequenceFlow>
+    <sequenceFlow id="flow5" sourceRef="Task2" targetRef="parallelgateway2"></sequenceFlow>
+    <inclusiveGateway id="parallelgateway1" name="Parallel Gateway"></inclusiveGateway>
+    <inclusiveGateway id="parallelgateway2" name="Parallel Gateway"></inclusiveGateway>
+    <serviceTask id="sid-537E92FE-5A63-43DE-AAAC-824790627465" name="Task 5" activiti:async="true" activiti:exclusive="false" activiti:class="org.activiti.DummyActivity"></serviceTask>
+    <sequenceFlow id="sid-5735A7E3-58B2-4D9F-8A6E-9B2CF029EDC9" sourceRef="parallelgateway7" targetRef="sid-537E92FE-5A63-43DE-AAAC-824790627465"></sequenceFlow>
+    <serviceTask id="sid-C821F6ED-BFEE-486B-82F8-23BDCE34C454" name="Task 4" activiti:async="true" activiti:exclusive="false" activiti:class="org.activiti.DummyActivity"></serviceTask>
+    <sequenceFlow id="sid-24B4F490-094B-49E9-B29F-DA1FEF0EBEB6" sourceRef="parallelgateway7" targetRef="sid-C821F6ED-BFEE-486B-82F8-23BDCE34C454"></sequenceFlow>
+    <sequenceFlow id="sid-0B593128-D779-4B44-95B2-C22B47B872C5" sourceRef="sid-C821F6ED-BFEE-486B-82F8-23BDCE34C454" targetRef="parallelgateway8"></sequenceFlow>
+    <sequenceFlow id="sid-B7923CE8-D24C-4FB5-A741-9197A30C9653" sourceRef="sid-537E92FE-5A63-43DE-AAAC-824790627465" targetRef="parallelgateway8"></sequenceFlow>
+    <endEvent id="sid-0F728BCD-7FF8-4014-AC9B-711063FEDF77" name="End"></endEvent>
+    <inclusiveGateway id="parallelgateway7" name="Parallel Gateway"></inclusiveGateway>
+    <inclusiveGateway id="parallelgateway8" name="Parallel Gateway"></inclusiveGateway>
+    <serviceTask id="sid-D43765C1-9B5C-435C-8A83-01CF01F5CF95" name="Task 3" activiti:class="org.activiti.DummyActivity"></serviceTask>
+    <sequenceFlow id="flow6" sourceRef="parallelgateway2" targetRef="sid-D43765C1-9B5C-435C-8A83-01CF01F5CF95"></sequenceFlow>
+    <sequenceFlow id="sid-7AA33207-8D98-4692-85C6-8D7553532F6B" sourceRef="sid-D43765C1-9B5C-435C-8A83-01CF01F5CF95" targetRef="parallelgateway7"></sequenceFlow>
+    <serviceTask id="sid-1355E685-5066-4B75-ABC1-2C2297897363" name="Task 6" activiti:class="org.activiti.DummyActivity"></serviceTask>
+    <sequenceFlow id="sid-28B4A5B2-51AE-45CE-AA05-937C33E52EDF" sourceRef="parallelgateway8" targetRef="sid-1355E685-5066-4B75-ABC1-2C2297897363"></sequenceFlow>
+    <sequenceFlow id="sid-FD662489-42DE-4D82-8A77-B819C554948E" sourceRef="sid-1355E685-5066-4B75-ABC1-2C2297897363" targetRef="sid-0F728BCD-7FF8-4014-AC9B-711063FEDF77"></sequenceFlow>
+  </process>
+</definitions>
